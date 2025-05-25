@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-from mangum import Mangum
 
 app = FastAPI()
 
@@ -18,4 +17,5 @@ def get_marks(name: list[str] = []):
     result = [marks_data.get(n, 0) for n in name]
     return {"marks": result}
 
-handler = Mangum(app)  # AWS Lambda adapter needed for Vercel Python runtime
+from mangum import Mangum
+handler = Mangum(app)
